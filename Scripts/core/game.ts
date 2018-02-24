@@ -26,6 +26,12 @@
     {id: "nextButton", src:"./Assets/images/nextButton.png"},
     {id: "backButton", src:"./Assets/images/backButton.png"},
 
+
+    {id: "startSound", src:"./Assets/audio/start.wav"},
+    {id: "fire", src:"./Assets/audio/fire.wav"},
+    {id: "heroDead", src:"./Assets/audio/heroDie.mp3"},
+    {id: "zombieDead", src:"./Assets/audio/zombiedead.wav"},
+    {id: "cheek", src:"./Assets/audio/zombieScream.wav"},
     {id: "ocean", src:"./Assets/images/ocean.gif"},
     {id: "plane", src:"./Assets/images/plane.png"},
     {id: "island", src:"./Assets/images/island.png"},
@@ -38,6 +44,7 @@
     assetManager = new createjs.LoadQueue(); // creates the assetManager object
     assetManager.installPlugin(createjs.Sound); // asset manager can also load sounds
     assetManager.loadManifest(assetManifest);
+
     assetManager.on("complete", Start, this);
   }
 

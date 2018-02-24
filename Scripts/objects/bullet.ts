@@ -30,6 +30,7 @@ module objects {
   
       // reset the objects location to some value
       public Reset():void {
+        createjs.Sound.play("fire");
         this.x = this._hero.x;
         this.y = this._hero.y-this.distance;
       }

@@ -6,6 +6,7 @@ module scenes {
     private _bg:createjs.Bitmap;
     private _startButton:objects.Button;
     private _animator:number;
+    private _startSound:any;
     // Public Properties
 
     // Constructor
@@ -13,11 +14,12 @@ module scenes {
       super(assetManager);
       this._animator=0;
       this.Start();
-      
+      this._startSound = assetManager.getResult("startSound");
     }
 
     // Private Mathods
     private _startButtonClick():void {
+      createjs.Sound.play("startSound");
       objects.Game.currentScene = config.Scene.PLAY;
     }
 

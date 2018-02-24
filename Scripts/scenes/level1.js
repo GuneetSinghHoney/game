@@ -16,7 +16,7 @@ var scenes;
         // Constructor
         function level1(assetManager) {
             var _this = _super.call(this, assetManager) || this;
-            _this._count = 10;
+            _this._count = 5;
             _this.assetManager = assetManager;
             _this._hero = new objects.hero(_this.assetManager);
             _this._bg = new createjs.Bitmap(_this.assetManager.getResult("lvl1"));
@@ -54,20 +54,26 @@ var scenes;
             this._zombiearray.forEach(function (element) {
                 if (_this._bullet.x <= (element.x + element.width) && _this._bullet.x >= element.x &&
                     _this._bullet.y == (element.y + element.height)) {
+                    createjs.Sound.play("zombieDead");
                     _this.removeChild(element);
+                    createjs.Sound.play("cheek");
                     _this._bullet.Reset();
                 }
                 if (_this._bullet1.x <= (element.x + element.width) && _this._bullet1.x >= element.x &&
                     _this._bullet1.y == (element.y + element.height)) {
+                    createjs.Sound.play("zombieDead");
                     _this.removeChild(element);
                     _this._bullet1.Reset();
                 }
                 if ((element.x + element.halfWidth) <= (_this._hero.x + _this._hero.width) &&
                     (element.x + element.halfWidth) >= (_this._hero.x) &&
                     (element.y + element.height) >= _this._hero.y) {
+                    createjs.Sound.play("heroDead");
                     _this.removeChild(_this._hero);
+                    console.log("hero removed");
                     _this.removeChild(_this._bullet);
                     _this.removeChild(_this._bullet1);
+                    objects.Game.currentScene = config.Scene.OVER;
                 }
             });
         };

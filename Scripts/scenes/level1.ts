@@ -13,7 +13,7 @@ module scenes {
       // Constructor
       constructor(assetManager: createjs.LoadQueue) {
         super(assetManager);
-        this._count = 10;
+        this._count = 5;
         this.assetManager = assetManager;
         this._hero = new objects.hero(this.assetManager);
         this._bg = new createjs.Bitmap(this.assetManager.getResult("lvl1"));
@@ -55,10 +55,12 @@ module scenes {
   
         //call update function of all objects
 
+        
        this._hero.Update();
       
        this._bullet.Update();
        this._bullet1.Update();
+      
        let num = Math.floor((Math.random() * this._count));
        this._zombiearray[num].Update();
 
@@ -69,13 +71,16 @@ module scenes {
         if(this._bullet.x <= (element.x+element.width) && this._bullet.x >= element.x &&
         this._bullet.y == (element.y+element.height))
         {
+          createjs.Sound.play("zombieDead");
           this.removeChild(element);
+          createjs.Sound.play("cheek");
          this._bullet.Reset();
         }
         
         if(this._bullet1.x <= (element.x+element.width) && this._bullet1.x >= element.x &&
         this._bullet1.y == (element.y+element.height))
-        {
+        {  
+           createjs.Sound.play("zombieDead");
           this.removeChild(element);
          this._bullet1.Reset();
         }
@@ -84,9 +89,12 @@ module scenes {
         (element.x+element.halfWidth) >= (this._hero.x) &&
         (element.y+element.height)>=this._hero.y)
         {
+          createjs.Sound.play("heroDead");
           this.removeChild(this._hero);
+          console.log("hero removed");
           this.removeChild(this._bullet);
           this.removeChild(this._bullet1);
+          objects.Game.currentScene = config.Scene.OVER;
          }
       
        });

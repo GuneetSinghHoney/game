@@ -2,8 +2,9 @@ module objects {
     export class zombie extends objects.GameObject {
       // private instance variables
       private hero;
+      
       // public properties
-  
+      
       // Constructor
       constructor(assetManager: createjs.LoadQueue,hero:objects.hero) {
         super(assetManager, "zom");
@@ -27,8 +28,9 @@ module objects {
       public Update():void {
         this.Move();
         this.CheckBounds();
+       
       }
-  
+ 
       // reset the objects location to some value
       public Reset():void {
         this.x = Math.floor((Math.random() * (640 - this.width)) + this.halfWidth);

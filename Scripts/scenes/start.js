@@ -18,10 +18,12 @@ var scenes;
             var _this = _super.call(this, assetManager) || this;
             _this._animator = 0;
             _this.Start();
+            _this._startSound = assetManager.getResult("startSound");
             return _this;
         }
         // Private Mathods
         StartScene.prototype._startButtonClick = function () {
+            createjs.Sound.play("startSound");
             objects.Game.currentScene = config.Scene.PLAY;
         };
         // Public Methods
