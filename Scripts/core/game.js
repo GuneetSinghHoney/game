@@ -13,6 +13,8 @@
     assetManifest = [
         { id: "heroFront", src: "./Assets/images/heroFront.png" },
         { id: "hero", src: "./Assets/images/hero.png" },
+        { id: "zom", src: "./Assets/images/zombie.png" },
+        { id: "bullet", src: "./Assets/images/bullet.png" },
         { id: "bg", src: "./Assets/images/bg.jpg" },
         { id: "lvl1", src: "./Assets/images/lvl1.jpg" },
         { id: "startbt", src: "./Assets/images/startButton.jpg" },

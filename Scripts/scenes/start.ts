@@ -5,12 +5,13 @@ module scenes {
     private _hero: objects.heroFront;
     private _bg:createjs.Bitmap;
     private _startButton:objects.Button;
+    private _animator:number;
     // Public Properties
 
     // Constructor
     constructor(assetManager: createjs.LoadQueue) {
       super(assetManager);
-
+      this._animator=0;
       this.Start();
       
     }
@@ -32,8 +33,22 @@ module scenes {
       this.Main();
     }
 
-    public Update(): void {
+    public Update(): void
+    {
+      this._animator+=1;
 
+      if(this._animator%50==0)
+      {
+        this._startButton.alpha = 0.25;
+      }
+      else if(this._animator%20)
+      {
+        this._startButton.alpha = 0.50; 
+      }
+      else
+      {
+        this._startButton.alpha =1;
+      }
     }
 
     // This is where the fun happens

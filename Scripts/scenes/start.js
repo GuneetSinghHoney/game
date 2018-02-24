@@ -16,6 +16,7 @@ var scenes;
         // Constructor
         function StartScene(assetManager) {
             var _this = _super.call(this, assetManager) || this;
+            _this._animator = 0;
             _this.Start();
             return _this;
         }
@@ -33,6 +34,16 @@ var scenes;
             this.Main();
         };
         StartScene.prototype.Update = function () {
+            this._animator += 1;
+            if (this._animator % 50 == 0) {
+                this._startButton.alpha = 0.25;
+            }
+            else if (this._animator % 20) {
+                this._startButton.alpha = 0.50;
+            }
+            else {
+                this._startButton.alpha = 1;
+            }
         };
         // This is where the fun happens
         StartScene.prototype.Main = function () {
