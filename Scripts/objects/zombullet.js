@@ -10,55 +10,49 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var objects;
 (function (objects) {
-    var zombie = /** @class */ (function (_super) {
-        __extends(zombie, _super);
+    var zombullet = /** @class */ (function (_super) {
+        __extends(zombullet, _super);
         // Constructor
-        function zombie(assetManager, hero) {
-            var _this = _super.call(this, assetManager, "zom") || this;
+        function zombullet(assetManager, zomarr) {
+            var _this = _super.call(this, assetManager, "bullet") || this;
             // public properties
-            _this.iskilled = false;
-            _this.hero = hero;
-            _this.regX = 0;
-            _this.regY = 0;
+            _this.distance = 0;
+            _this.fire = 0;
+            _this._hero = zomarr;
             _this.Start();
             return _this;
         }
         // private methods
         // public methods
         // Initializes variables and creates new objects
-        zombie.prototype.Start = function () {
-            this._dy = 6;
+        zombullet.prototype.Start = function () {
+            this._dy = 9;
             this.Reset();
         };
         // updates the game object every frame
-        zombie.prototype.Update = function () {
+        zombullet.prototype.Update = function () {
             this.Move();
             this.CheckBounds();
         };
         // reset the objects location to some value
-        zombie.prototype.Reset = function () {
-            this.x = Math.floor((Math.random() * (640 - this.width)) + this.halfWidth);
-            this.y = -this.height;
+        zombullet.prototype.Reset = function () {
+            //createjs.Sound.play("fire");
+            this.x = this._hero.x;
+            this.y = this._hero.y - this.distance;
         };
         // move the object to some new location
-        zombie.prototype.Move = function () {
+        zombullet.prototype.Move = function () {
             this.y += this._dy;
-            if (this.hero.x < this.x) {
-                this.x = this.x - 1;
-            }
-            else if (this.hero.x > this.x) {
-                this.x += 1;
-            }
         };
         // check to see if some boundary has been passed
-        zombie.prototype.CheckBounds = function () {
+        zombullet.prototype.CheckBounds = function () {
             // check lower bounds
-            if (this.y == (480 - this.height)) {
+            if (this.y > 480) {
                 this.Reset();
             }
         };
-        return zombie;
+        return zombullet;
     }(objects.GameObject));
-    objects.zombie = zombie;
+    objects.zombullet = zombullet;
 })(objects || (objects = {}));
-//# sourceMappingURL=zombie.js.map
+//# sourceMappingURL=zombullet.js.map

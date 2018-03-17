@@ -1,0 +1,34 @@
+
+       this._zombiearray.forEach(element => {
+         
+        if(this._bullet.x <= (element.x+element.width) && this._bullet.x >= element.x &&
+        this._bullet.y == (element.y+element.height))
+        {
+          createjs.Sound.play("zombieDead");
+          this.removeChild(element);
+          createjs.Sound.play("cheek");
+         this._bullet.Reset();
+        }
+        
+        if(this._bullet1.x <= (element.x+element.width) && this._bullet1.x >= element.x &&
+        this._bullet1.y == (element.y+element.height))
+        {  
+           createjs.Sound.play("zombieDead");
+          this.removeChild(element);
+         this._bullet1.Reset();
+        }
+
+        if((element.x+element.halfWidth) <= (this._hero.x+this._hero.width) &&
+        (element.x+element.halfWidth) >= (this._hero.x) &&
+        (element.y+element.height)>=this._hero.y)
+        {
+          createjs.Sound.play("heroDead");
+          this.removeChild(this._hero);
+          console.log("hero removed");
+          this.removeChild(this._bullet);
+          this.removeChild(this._bullet1);
+          objects.Game.currentScene = config.Scene.OVER;
+         }
+      
+       });
+       

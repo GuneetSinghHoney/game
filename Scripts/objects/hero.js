@@ -12,11 +12,11 @@ var objects;
 (function (objects) {
     var hero = /** @class */ (function (_super) {
         __extends(hero, _super);
-        // private instance variables
         // public properties
         // Constructor
-        function hero(assetManager) {
+        function hero(assetManager, keyboard) {
             var _this = _super.call(this, assetManager, "hero") || this;
+            _this.keyboard = keyboard;
             _this.Start();
             return _this;
         }
@@ -36,7 +36,12 @@ var objects;
         };
         // move the object to some new location
         hero.prototype.Move = function () {
-            this.x = objects.Game.stage.mouseX;
+            if (objects.Game.keyboardmanager.moveLeft) {
+                this.x -= 5;
+            }
+            if (objects.Game.keyboardmanager.moveRight) {
+                this.x += 5;
+            }
         };
         // check to see if some boundary has been passed
         hero.prototype.CheckBounds = function () {

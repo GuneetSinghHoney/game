@@ -15,7 +15,7 @@ module scenes {
 
     // Private Mathods
     private _backButtonClick():void {
-      objects.Game.currentScene = config.Scene.PLAY;
+      
     }
 
 
@@ -24,7 +24,7 @@ module scenes {
     // Initialize Game Variables and objects
     public Start(): void {
       this._overLabel = new objects.Label("Game Over", "40px", "Consolas", "#000000", 320, 240, true);
-      this._backButton = new objects.Button(this.assetManager, "backButton", 320, 340);
+      
       this.Main();
     }
 
@@ -41,7 +41,7 @@ module scenes {
       this.addChild(this._backButton);
 
       // event listeners
-      this._backButton.on("click", this._backButtonClick);
+     // this._backButton.on("click", this._backButtonClick);
     }
   }
 }

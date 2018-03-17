@@ -10,8 +10,13 @@
 /// <reference path="../../Scripts/objects/island.ts"/>
 /// <reference path="../../Scripts/objects/cloud.ts"/>
 /// <reference path="../../Scripts/objects/bullet.ts"/>
+/// <reference path="../../Scripts/objects/zombullet.ts"/>
 /// <reference path="../../Scripts/objects/zombie.ts"/>
+/// <reference path="../../Scripts/managers/keyboard.ts"/>
+/// <reference path="../../Scripts/objects/zombie2.ts"/>
 /// <reference path="../../Scripts/scenes/over.ts"/>
 /// <reference path="../../Scripts/scenes/play.ts"/>
+/// <reference path="../../Scripts/scenes/level1.ts"/>
+/// <reference path="../../Scripts/scenes/level2.ts"/>
 /// <reference path="../../Scripts/scenes/start.ts"/>
 //# sourceMappingURL=_references.js.map

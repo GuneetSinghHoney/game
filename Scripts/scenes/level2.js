@@ -10,21 +10,25 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var scenes;
 (function (scenes) {
-    var level1 = /** @class */ (function (_super) {
-        __extends(level1, _super);
+    var level2 = /** @class */ (function (_super) {
+        __extends(level2, _super);
         // Public Properties
         // Constructor
-        function level1(assetManager) {
+        function level2(assetManager) {
             var _this = _super.call(this, assetManager) || this;
             _this._count = 5;
             _this._zombieCounter = 0;
             _this.assetManager = assetManager;
             _this._hero = new objects.hero(_this.assetManager);
-            _this._bg = new createjs.Bitmap(_this.assetManager.getResult("lvl1"));
+            _this._bg = new createjs.Bitmap(_this.assetManager.getResult("lvl2"));
             _this.addEventListener("click", _this._fireBullets);
             _this._zombiearray = new Array(_this._count);
             for (var i = 0; i < _this._zombiearray.length; i++) {
                 _this._zombiearray[i] = new objects.zombie(_this.assetManager, _this._hero);
+            }
+            _this._zombiearray2 = new Array(3);
+            for (var i = 0; i < _this._zombiearray2.length; i++) {
+                _this._zombiearray2[i] = new objects.zombie2(_this.assetManager, _this._hero);
             }
             _this._bullet = new objects.bullet(_this.assetManager, _this._hero);
             _this._bullet.distance = 0;
@@ -34,7 +38,7 @@ var scenes;
             return _this;
         }
         // Private Mathods
-        level1.prototype._fireBullets = function () {
+        level2.prototype._fireBullets = function () {
             console.log("fire");
             //   let x = new objects.bullet(this.assetManager,this._hero);
             //   x.distance = 20;
@@ -42,22 +46,52 @@ var scenes;
         };
         // Public Methods
         // Initialize Game Variables and objects
-        level1.prototype.Start = function () {
+        level2.prototype.Start = function () {
             //initalise the variables
             this.Main();
         };
-        level1.prototype.Update = function () {
+        level2.prototype.Update = function () {
             //call update function of all objects
             var _this = this;
             console.log(this._zombieCounter);
-            if (this._zombieCounter == this._zombiearray.length) {
-                objects.Game.currentScene = config.Scene.LEVEL2;
+            if (this._zombieCounter == (this._zombiearray.length + 3)) {
+                objects.Game.currentScene = config.Scene.OVER;
             }
             this._hero.Update();
             this._bullet.Update();
             this._bullet1.Update();
             var num = Math.floor((Math.random() * this._count));
             this._zombiearray[num].Update();
+            num = Math.floor((Math.random() * 3));
+            this._zombiearray2[num].Update();
+            this._zombiearray2.forEach(function (element) {
+                if (element.iskilled == false) {
+                    var check = managers.Collision.Check(element, _this._bullet);
+                    var check2 = managers.Collision.Check(element, _this._bullet1);
+                    var check3 = managers.Collision.Check(element.bullet, _this._hero);
+                    if (check || check2) {
+                        //collision bullet hits zombie
+                        createjs.Sound.play("zombieDead");
+                        _this.removeChild(element);
+                        _this.removeChild(element.bullet);
+                        _this._zombieCounter++;
+                        element.iskilled = true;
+                        createjs.Sound.play("cheek");
+                        if (check)
+                            _this._bullet.Reset();
+                        if (check2)
+                            _this._bullet1.Reset();
+                    }
+                    if (check3) {
+                        createjs.Sound.play("heroDead");
+                        _this.removeChild(_this._hero);
+                        console.log("hero removed");
+                        _this.removeChild(_this._bullet);
+                        _this.removeChild(_this._bullet1);
+                        objects.Game.currentScene = config.Scene.OVER;
+                    }
+                }
+            });
             //bullet zombie collision
             this._zombiearray.forEach(function (element) {
                 if (element.iskilled == false) {
@@ -88,7 +122,7 @@ var scenes;
             });
         };
         // This is where the fun happens
-        level1.prototype.Main = function () {
+        level2.prototype.Main = function () {
             // add the bg to the scene
             var _this = this;
             this.addChild(this._bg);
@@ -97,10 +131,14 @@ var scenes;
             this._zombiearray.forEach(function (element) {
                 _this.addChild(element);
             });
+            this._zombiearray2.forEach(function (element) {
+                _this.addChild(element);
+                _this.addChild(element.bullet);
+            });
             this.addChild(this._hero);
         };
-        return level1;
+        return level2;
     }(objects.Scene));
-    scenes.level1 = level1;
+    scenes.level2 = level2;
 })(scenes || (scenes = {}));
-//# sourceMappingURL=level1.js.map
+//# sourceMappingURL=level2.js.map
