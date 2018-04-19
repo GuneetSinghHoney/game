@@ -19,7 +19,7 @@ var scenes;
             _this._count = 5;
             _this._zombieCounter = 0;
             _this.assetManager = assetManager;
-            _this._hero = new objects.hero(_this.assetManager);
+            _this._hero = new objects.hero(_this.assetManager, objects.Game.keyboardmanager);
             _this._bg = new createjs.Bitmap(_this.assetManager.getResult("lvl1"));
             _this.addEventListener("click", _this._fireBullets);
             _this._zombiearray = new Array(_this._count);
@@ -28,8 +28,8 @@ var scenes;
             }
             _this._bullet = new objects.bullet(_this.assetManager, _this._hero);
             _this._bullet.distance = 0;
-            _this._bullet1 = new objects.bullet(_this.assetManager, _this._hero);
-            _this._bullet1.distance = 20;
+            //this._bullet1 = new objects.bullet(this.assetManager,this._hero);
+            //  this._bullet1.distance = 20;
             _this.Start();
             return _this;
         }
@@ -51,20 +51,20 @@ var scenes;
             var _this = this;
             console.log(this._zombieCounter);
             if (this._zombieCounter == this._zombiearray.length) {
-                objects.Game.currentScene = config.Scene.LEVEL2;
+                objects.Game.currentScene = config.Scene.CONGO;
             }
             this._hero.Update();
             this._bullet.Update();
-            this._bullet1.Update();
+            // this._bullet1.Update();
             var num = Math.floor((Math.random() * this._count));
             this._zombiearray[num].Update();
             //bullet zombie collision
             this._zombiearray.forEach(function (element) {
                 if (element.iskilled == false) {
                     var check = managers.Collision.Check(element, _this._bullet);
-                    var check2 = managers.Collision.Check(element, _this._bullet1);
+                    //  let check2 = managers.Collision.Check(element,this._bullet1)
                     var check3 = managers.Collision.Check(element, _this._hero);
-                    if (check || check2) {
+                    if (check) {
                         //collision bullet hits zombie
                         createjs.Sound.play("zombieDead");
                         _this.removeChild(element);
@@ -73,16 +73,17 @@ var scenes;
                         createjs.Sound.play("cheek");
                         if (check)
                             _this._bullet.Reset();
-                        if (check2)
-                            _this._bullet1.Reset();
-                    }
-                    if (check3) {
-                        createjs.Sound.play("heroDead");
-                        _this.removeChild(_this._hero);
-                        console.log("hero removed");
-                        _this.removeChild(_this._bullet);
-                        _this.removeChild(_this._bullet1);
-                        objects.Game.currentScene = config.Scene.OVER;
+                        //       if(check2)
+                        //   this._bullet1.Reset();
+                        //    }
+                        if (check3) {
+                            createjs.Sound.play("heroDead");
+                            _this.removeChild(_this._hero);
+                            console.log("hero removed");
+                            _this.removeChild(_this._bullet);
+                            //    this.removeChild(this._bullet1);
+                            objects.Game.currentScene = config.Scene.OVER;
+                        }
                     }
                 }
             });
@@ -93,7 +94,7 @@ var scenes;
             var _this = this;
             this.addChild(this._bg);
             this.addChild(this._bullet);
-            this.addChild(this._bullet1);
+            //     this.addChild(this._bullet1); 
             this._zombiearray.forEach(function (element) {
                 _this.addChild(element);
             });

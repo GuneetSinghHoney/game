@@ -10,50 +10,43 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var objects;
 (function (objects) {
-    var zombullet = /** @class */ (function (_super) {
-        __extends(zombullet, _super);
+    var boss = /** @class */ (function (_super) {
+        __extends(boss, _super);
+        // public properties
         // Constructor
-        function zombullet(assetManager, zomarr) {
-            var _this = _super.call(this, "bullet") || this;
-            // public properties
-            _this.distance = 0;
-            _this.fire = 0;
-            _this._hero = zomarr;
+        function boss(assetManager) {
+            var _this = _super.call(this, assetManager.getResult("boss")) || this;
             _this.Start();
+            _this.x = 0;
+            _this.y = 2;
             return _this;
         }
         // private methods
         // public methods
         // Initializes variables and creates new objects
-        zombullet.prototype.Start = function () {
-            this._dy = 10;
-            this.Reset();
+        boss.prototype.Start = function () {
         };
         // updates the game object every frame
-        zombullet.prototype.Update = function () {
-            console.log("fireeedddd@!!!!!");
+        boss.prototype.Update = function () {
             this.Move();
             this.CheckBounds();
         };
         // reset the objects location to some value
-        zombullet.prototype.Reset = function () {
-            //createjs.Sound.play("fire");
-            this.x = this._hero.x;
-            this.y = this._hero.y;
+        boss.prototype.Reset = function () {
         };
         // move the object to some new location
-        zombullet.prototype.Move = function () {
-            this.y += this._dy;
+        boss.prototype.Move = function () {
+            this.y += 2;
         };
         // check to see if some boundary has been passed
-        zombullet.prototype.CheckBounds = function () {
-            // check lower bounds
-            if (this.y > 480) {
-                this.Reset();
+        boss.prototype.CheckBounds = function () {
+            // right boundary
+            if (this.y >= 100) {
+                this.y = 0;
             }
         };
-        return zombullet;
-    }(objects.GameObject));
-    objects.zombullet = zombullet;
+        return boss;
+    }(createjs.Bitmap));
+    objects.boss = boss;
 })(objects || (objects = {}));
-//# sourceMappingURL=zombullet.js.map
+//# sourceMappingURL=boss.js.map

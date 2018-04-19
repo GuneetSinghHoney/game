@@ -6,7 +6,7 @@ module objects {
       public distance:number = 0 ;
       // Constructor
       constructor(assetManager: createjs.LoadQueue, warrior:objects.hero) {
-        super(assetManager, "bullet");
+        super("bullet");
         this._hero = warrior;
      
         this.Start();

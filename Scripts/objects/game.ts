@@ -4,5 +4,6 @@ module objects {
     public static assetManager: createjs.LoadQueue;
     public static currentScene: number;
     public static keyboardmanager: managers.Keyboard;
+    public static textureAtlas:createjs.SpriteSheet;
   }
 }

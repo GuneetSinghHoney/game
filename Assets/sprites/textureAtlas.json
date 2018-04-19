@@ -1,0 +1,35 @@
+{
+
+"images": [
+    "textureAtlas.png"
+],
+
+"framerate": 20,
+"frames": [
+    [1, 1, 20, 42, 0, 0, 0],
+    [23, 1, 111, 43, 0, -19, -41],
+    [136, 1, 75, 85, 0, 0, 0],
+    [1, 88, 75, 85, 0, 0, 0],
+    [78, 88, 75, 85, 0, 0, 0],
+    [155, 88, 75, 84, 0, 0, 0],
+    [1, 175, 75, 84, 0, 0, 0],
+    [78, 175, 75, 84, 0, 0, 0]
+],
+
+"animations": {
+    "bullet": { "frames": [0] },
+    "ground": { "frames": [1] },
+    "hero1": { "frames": [2] },
+    "herofire": { "frames": [3] },
+    "herowalk": { "frames": [4] },
+    "zom1": { "frames": [5] },
+    "zom3": { "frames": [6] },
+    "zom4": { "frames": [7] }
+},
+
+"texturepacker": [
+        "SmartUpdateHash: $TexturePacker:SmartUpdate:fcac1458a3124dd783fb515a0dc9bf7a:5922efe4d0584b998a270ded880107eb:2b5604bc88faefd55ddac16e9bce1532$",
+        "Created with TexturePacker (https://www.codeandweb.com/texturepacker) for EaselJS"
+]
+
+}

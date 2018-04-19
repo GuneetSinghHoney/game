@@ -14,7 +14,7 @@ var objects;
         __extends(bullet, _super);
         // Constructor
         function bullet(assetManager, warrior) {
-            var _this = _super.call(this, assetManager, "bullet") || this;
+            var _this = _super.call(this, "bullet") || this;
             // public properties
             _this.distance = 0;
             _this._hero = warrior;

@@ -14,7 +14,7 @@ var objects;
         __extends(zombie, _super);
         // Constructor
         function zombie(assetManager, hero) {
-            var _this = _super.call(this, assetManager, "zom") || this;
+            var _this = _super.call(this, "zom1") || this;
             // public properties
             _this.iskilled = false;
             _this.hero = hero;

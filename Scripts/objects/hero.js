@@ -15,7 +15,7 @@ var objects;
         // public properties
         // Constructor
         function hero(assetManager, keyboard) {
-            var _this = _super.call(this, assetManager, "hero") || this;
+            var _this = _super.call(this, "hero") || this;
             _this.keyboard = keyboard;
             _this.Start();
             return _this;

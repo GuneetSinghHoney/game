@@ -1,16 +1,16 @@
 module objects {
-    export class zombullet extends objects.GameObject {
+    export class boss extends createjs.Bitmap {
       // private instance variables
-       
-      private _hero:objects.zombie2;
+      private check:boolean;
+      private hero:objects.hero;
       // public properties
-      public distance:number = 0 ;
-      public fire:number=0;
+  
       // Constructor
-      constructor(assetManager: createjs.LoadQueue, zomarr:any) {
-        super("bullet");
-       this._hero = zomarr;
+      constructor(assetManager: createjs.LoadQueue ) {
+        super(assetManager.getResult("boss"));      
         this.Start();
+        this.x = 0;
+        this.y = 2;
       }
   
       // private methods
@@ -19,35 +19,34 @@ module objects {
   
       // Initializes variables and creates new objects
       public Start():void {
-        this._dy = 10;
-        this.Reset();
+        
       }
   
       // updates the game object every frame
       public Update():void {
-        console.log("fireeedddd@!!!!!")
         this.Move();
         this.CheckBounds();
       }
   
       // reset the objects location to some value
       public Reset():void {
-        //createjs.Sound.play("fire");
-        this.x = this._hero.x;
-        this.y = this._hero.y;
+  
       }
   
       // move the object to some new location
-      public Move():void {
-        this.y += this._dy;
+      public Move():void
+      {
+        this.y +=2;        
       }
   
       // check to see if some boundary has been passed
       public CheckBounds():void {
-        // check lower bounds
-        if(this.y > 480) {
-          this.Reset();
+        // right boundary
+        if(this.y >= 100)
+        {       
+          this.y = 0;
         }
+        
       }
     }
   }

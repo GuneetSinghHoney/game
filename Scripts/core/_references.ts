@@ -16,8 +16,12 @@
 /// <reference path="../../Scripts/objects/zombie.ts"/>
 /// <reference path="../../Scripts/managers/keyboard.ts"/>
 /// <reference path="../../Scripts/objects/zombie2.ts"/>
+/// <reference path="../../Scripts/objects/boss.ts"/> 
+
 /// <reference path="../../Scripts/scenes/over.ts"/>
 /// <reference path="../../Scripts/scenes/play.ts"/>
 /// <reference path="../../Scripts/scenes/level1.ts"/>
 /// <reference path="../../Scripts/scenes/level2.ts"/>
 /// <reference path="../../Scripts/scenes/start.ts"/>
+
+/// <reference path="../../Scripts/scenes/congo.ts"/>

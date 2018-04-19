@@ -11,6 +11,34 @@
     var currentScene;
     var currentState;
     var keyboardManager;
+    var textureAtlasData;
+    var textureAtlas;
+    textureAtlasData = {
+        "images": [
+            "Assets/sprites/textureAtlas.png"
+        ],
+        "frames": [
+            [1, 1, 20, 42, 0, 0, 0],
+            [23, 1, 111, 43, 0, 0, 0],
+            [136, 1, 75, 85, 0, 0, 0],
+            [1, 88, 75, 85, 0, 0, 0],
+            [78, 88, 75, 85, 0, 0, 0],
+            [155, 88, 75, 84, 0, 0, 0],
+            [1, 175, 75, 84, 0, 0, 0],
+            [78, 175, 75, 84, 0, 0, 0]
+        ],
+        "animations": {
+            "bullet": { "frames": [0] },
+            "zom2": { "frames": [1] },
+            "hero": { "frames": [3, 4], "speed": 0.1 },
+            "herofire": { "frames": [2] },
+            "zom1": { "frames": [5, 6, 7], "speed": 0.1 }
+        },
+        "texturepacker": [
+            "SmartUpdateHash: $TexturePacker:SmartUpdate:61b687ef60fc461abe71f6cd57b6c676:d7984b5b0e50850aad14157292184ec0:2b5604bc88faefd55ddac16e9bce1532$",
+            "Created with TexturePacker (https://www.codeandweb.com/texturepacker) for EaselJS"
+        ]
+    };
     assetManifest = [
         { id: "heroFront", src: "./Assets/images/heroFront.png" },
         { id: "hero", src: "./Assets/images/hero.png" },
@@ -25,6 +53,9 @@
         { id: "startButton", src: "./Assets/images/startButton.jpg" },
         { id: "nextButton", src: "./Assets/images/nextButton.png" },
         { id: "backButton", src: "./Assets/images/backButton.png" },
+        { id: "boss", src: "./Assets/images/boss1.png" },
+        { id: "bossBullet", src: "./Assets/images/boss.png" },
+        { id: "congo", src: "./Assets/images/main.jpg" },
         { id: "startSound", src: "./Assets/audio/start.wav" },
         { id: "fire", src: "./Assets/audio/fire.wav" },
         { id: "heroDead", src: "./Assets/audio/heroDie.mp3" },
@@ -33,11 +64,13 @@
         { id: "ocean", src: "./Assets/images/ocean.gif" },
         { id: "plane", src: "./Assets/images/plane.png" },
         { id: "island", src: "./Assets/images/island.png" },
-        { id: "cloud", src: "./Assets/images/cloud.png" }
+        { id: "cloud", src: "./Assets/images/cloud.png" },
+        { id: "boomer", src: "./Assets/images/boomer.png" }
     ];
     // preloads assets
     function Init() {
         console.log("Initialization Started...");
+        textureAtlas = new createjs.SpriteSheet(textureAtlasData);
         assetManager = new createjs.LoadQueue(); // creates the assetManager object
         assetManager.installPlugin(createjs.Sound); // asset manager can also load sounds
         assetManager.loadManifest(assetManifest);
@@ -54,6 +87,7 @@
         currentState = config.Scene.START;
         keyboardManager = new managers.Keyboard();
         objects.Game.keyboardmanager = keyboardManager;
+        objects.Game.textureAtlas = textureAtlas;
         Main();
     }
     function Update() {
@@ -72,13 +106,19 @@
                 currentScene = new scenes.StartScene(assetManager);
                 break;
             case config.Scene.PLAY:
-                currentScene = new scenes.level1(assetManager);
+                currentScene = new scenes.last(assetManager);
                 break;
             case config.Scene.LEVEL2:
                 currentScene = new scenes.level2(assetManager);
                 break;
             case config.Scene.OVER:
                 currentScene = new scenes.OverScene(assetManager);
+                break;
+            case config.Scene.last:
+                currentScene = new scenes.last(assetManager);
+                break;
+            case config.Scene.CONGO:
+                currentScene = new scenes.congo(assetManager);
                 break;
         }
         currentState = objects.Game.currentScene;

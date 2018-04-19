@@ -7,7 +7,7 @@ module objects {
       public iskilled:boolean = false;
       // Constructor
       constructor(assetManager: createjs.LoadQueue,hero:objects.hero) {
-        super(assetManager, "zom");
+        super("zom1");
         this.hero = hero;
         this.regX =0;
         this.regY=0;

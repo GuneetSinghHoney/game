@@ -7,7 +7,7 @@ module objects {
   
       // Constructor
       constructor(assetManager: createjs.LoadQueue,keyboard:managers.Keyboard) {
-        super(assetManager, "hero");
+        super("hero");
         this.keyboard = keyboard;
         this.Start();
       }
