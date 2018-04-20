@@ -5,5 +5,6 @@ module objects {
     public static currentScene: number;
     public static keyboardmanager: managers.Keyboard;
     public static textureAtlas:createjs.SpriteSheet;
+    public static scene: config.Scene;
   }
 }

@@ -5,6 +5,7 @@ module config {
     LEVEL2,
     last,
     OVER,
-    CONGO
+    CONGO,
+    WIN
   }
 }

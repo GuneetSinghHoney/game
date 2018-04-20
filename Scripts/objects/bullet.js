@@ -35,6 +35,7 @@ var objects;
         };
         // reset the objects location to some value
         bullet.prototype.Reset = function () {
+            scenes.last._isColliding = false;
             createjs.Sound.play("fire");
             this.x = this._hero.x;
             this.y = this._hero.y - this.distance;

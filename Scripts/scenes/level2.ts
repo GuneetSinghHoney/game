@@ -7,7 +7,7 @@ module scenes {
         private _zombiearray2:objects.zombie2[]; 
         private _bullet:objects.bullet;
     //    private _bullet1:objects.bullet;
-      
+    private sound:createjs.Sound;
         private _zombieCounter:number;
         private _count:number;
         // Public Properties
@@ -16,6 +16,7 @@ module scenes {
       constructor(assetManager: createjs.LoadQueue) {
         super(assetManager);
         this._count = 5;
+        this.sound = createjs.Sound.play("zomhorde");
         this._zombieCounter =0;
         this.assetManager = assetManager;
         this._hero = new objects.hero(this.assetManager,objects.Game.keyboardmanager);
@@ -72,7 +73,9 @@ module scenes {
         console.log(this._zombieCounter);
         if(this._zombieCounter==(this._zombiearray.length+3))
         {
-          objects.Game.currentScene = config.Scene.last;
+          objects.Game.scene = config.Scene.LEVEL2;
+          this.sound.stop();
+          objects.Game.currentScene = config.Scene.CONGO;
         }
        this._hero.Update();
       
@@ -114,6 +117,7 @@ module scenes {
             createjs.Sound.play("heroDead");
             this.removeChild(this._hero);
             console.log("hero removed");
+            this.sound.stop();
             this.removeChild(this._bullet);
      //       this.removeChild(this._bullet1);
             objects.Game.currentScene = config.Scene.OVER;

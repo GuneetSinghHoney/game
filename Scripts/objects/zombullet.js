@@ -14,7 +14,7 @@ var objects;
         __extends(zombullet, _super);
         // Constructor
         function zombullet(assetManager, zomarr) {
-            var _this = _super.call(this, "bullet") || this;
+            var _this = _super.call(this, "zombie_bullet") || this;
             // public properties
             _this.distance = 0;
             _this.fire = 0;

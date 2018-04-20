@@ -1,5 +1,5 @@
 module objects {
-    export class boss extends createjs.Bitmap {
+    export class boss extends objects.GameObject {
       // private instance variables
       private check:boolean;
       private hero:objects.hero;
@@ -7,9 +7,9 @@ module objects {
   
       // Constructor
       constructor(assetManager: createjs.LoadQueue ) {
-        super(assetManager.getResult("boss"));      
+        super("boss");      
         this.Start();
-        this.x = 0;
+        this.x = this.halfWidth;
         this.y = 2;
       }
   
@@ -36,7 +36,7 @@ module objects {
       // move the object to some new location
       public Move():void
       {
-        this.y +=2;        
+        this.y +=1;        
       }
   
       // check to see if some boundary has been passed

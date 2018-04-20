@@ -6,29 +6,37 @@
 
 "framerate": 20,
 "frames": [
-    [1, 1, 20, 42, 0, 0, 0],
-    [23, 1, 111, 43, 0, -19, -41],
-    [136, 1, 75, 85, 0, 0, 0],
-    [1, 88, 75, 85, 0, 0, 0],
-    [78, 88, 75, 85, 0, 0, 0],
-    [155, 88, 75, 84, 0, 0, 0],
-    [1, 175, 75, 84, 0, 0, 0],
-    [78, 175, 75, 84, 0, 0, 0]
+    [1, 1, 86, 215, 0, 0, 0],
+    [89, 1, 601, 74, 0, 0, -6],
+    [89, 77, 62, 82, 0, 0, 0],
+    [89, 161, 111, 43, 0, -19, -41],
+    [153, 77, 60, 81, 0, 0, 0],
+    [202, 160, 20, 42, 0, 0, 0],
+    [215, 77, 56, 81, 0, 0, 0],
+    [224, 160, 15, 38, 0, 0, 0],
+    [241, 160, 8, 25, 0, 0, 0],
+    [273, 77, 58, 79, 0, 0, 0],
+    [333, 77, 51, 77, 0, 0, 0],
+    [386, 77, 58, 71, 0, 0, -4]
 ],
 
 "animations": {
-    "bullet": { "frames": [0] },
-    "ground": { "frames": [1] },
-    "hero1": { "frames": [2] },
-    "herofire": { "frames": [3] },
-    "herowalk": { "frames": [4] },
-    "zom1": { "frames": [5] },
+    "zombie_dead": { "frames": [0] },
+    "boss": { "frames": [1] },
+    "zom1": { "frames": [2] },
+    "ground": { "frames": [3] },
+    "zom4": { "frames": [4] },
+    "zombie_bullet": { "frames": [5] },
     "zom3": { "frames": [6] },
-    "zom4": { "frames": [7] }
+    "boss_bullet": { "frames": [7] },
+    "bullet": { "frames": [8] },
+    "hero1": { "frames": [9] },
+    "herowalk": { "frames": [10] },
+    "herofire": { "frames": [11] }
 },
 
 "texturepacker": [
-        "SmartUpdateHash: $TexturePacker:SmartUpdate:fcac1458a3124dd783fb515a0dc9bf7a:5922efe4d0584b998a270ded880107eb:2b5604bc88faefd55ddac16e9bce1532$",
+        "SmartUpdateHash: $TexturePacker:SmartUpdate:0c9139cfe50ff1f146a6d3d948c271eb:27828527f9d5cb75fd3c22ab908e81f9:2b5604bc88faefd55ddac16e9bce1532$",
         "Created with TexturePacker (https://www.codeandweb.com/texturepacker) for EaselJS"
 ]
 

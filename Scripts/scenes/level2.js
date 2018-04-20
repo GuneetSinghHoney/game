@@ -17,6 +17,7 @@ var scenes;
         function level2(assetManager) {
             var _this = _super.call(this, assetManager) || this;
             _this._count = 5;
+            _this.sound = createjs.Sound.play("zomhorde");
             _this._zombieCounter = 0;
             _this.assetManager = assetManager;
             _this._hero = new objects.hero(_this.assetManager, objects.Game.keyboardmanager);
@@ -55,7 +56,9 @@ var scenes;
             var _this = this;
             console.log(this._zombieCounter);
             if (this._zombieCounter == (this._zombiearray.length + 3)) {
-                objects.Game.currentScene = config.Scene.last;
+                objects.Game.scene = config.Scene.LEVEL2;
+                this.sound.stop();
+                objects.Game.currentScene = config.Scene.CONGO;
             }
             this._hero.Update();
             this._bullet.Update();
@@ -86,6 +89,7 @@ var scenes;
                         createjs.Sound.play("heroDead");
                         _this.removeChild(_this._hero);
                         console.log("hero removed");
+                        _this.sound.stop();
                         _this.removeChild(_this._bullet);
                         //       this.removeChild(this._bullet1);
                         objects.Game.currentScene = config.Scene.OVER;

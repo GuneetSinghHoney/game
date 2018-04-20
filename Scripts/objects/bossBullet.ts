@@ -1,32 +1,15 @@
 
 module objects {
-    export class bossBullet extends createjs.Bitmap {
+    export class bossBullet extends objects.GameObject {
       // private instance variables
-   
- protected _dx: number;
- protected _dy: number;
- // public properties
- public width: number;
- public height: number;
- public halfWidth: number;
- public halfHeight: number;
- 
- // private methods
- private _initialize():void {
-   this.width = this.getBounds().width;
-   this.height = this.getBounds().height;
-   this.halfWidth = this.width * 0.5;
-   this.halfHeight = this.height * 0.5;
-   this.regX = this.halfWidth;
-   this.regY = this.halfHeight;
- }
-
-  
+   private _boss:objects.boss;
       // public properties
         public x: number;
       // Constructor
-      constructor(assetManager: createjs.LoadQueue) {
-        super(assetManager.getResult("bossBullet"));
+      constructor(assetManager: createjs.LoadQueue,boss:objects.boss) {
+        super("bossbullet");
+        this._boss = boss;
+        this.height = 40;
         this.Start();
       }
   
@@ -36,7 +19,7 @@ module objects {
       private _reset():void {
         let num = Math.floor((Math.random() * 640));
         this.x = num;
-        this.y = 0;
+        this.y = this._boss.y;
       }
   
       // move the object to some new location

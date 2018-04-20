@@ -8,7 +8,7 @@ module objects {
       public fire:number=0;
       // Constructor
       constructor(assetManager: createjs.LoadQueue, zomarr:any) {
-        super("bullet");
+        super("zombie_bullet");
        this._hero = zomarr;
         this.Start();
       }

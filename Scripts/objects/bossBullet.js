@@ -13,26 +13,19 @@ var objects;
     var bossBullet = /** @class */ (function (_super) {
         __extends(bossBullet, _super);
         // Constructor
-        function bossBullet(assetManager) {
-            var _this = _super.call(this, assetManager.getResult("bossBullet")) || this;
+        function bossBullet(assetManager, boss) {
+            var _this = _super.call(this, "bossbullet") || this;
+            _this._boss = boss;
+            _this.height = 40;
             _this.Start();
             return _this;
         }
-        // private methods
-        bossBullet.prototype._initialize = function () {
-            this.width = this.getBounds().width;
-            this.height = this.getBounds().height;
-            this.halfWidth = this.width * 0.5;
-            this.halfHeight = this.height * 0.5;
-            this.regX = this.halfWidth;
-            this.regY = this.halfHeight;
-        };
         // private methods
         // reset the objects location to some value
         bossBullet.prototype._reset = function () {
             var num = Math.floor((Math.random() * 640));
             this.x = num;
-            this.y = 0;
+            this.y = this._boss.y;
         };
         // move the object to some new location
         bossBullet.prototype._move = function () {
@@ -56,7 +49,7 @@ var objects;
             this._checkBounds();
         };
         return bossBullet;
-    }(createjs.Bitmap));
+    }(objects.GameObject));
     objects.bossBullet = bossBullet;
 })(objects || (objects = {}));
 //# sourceMappingURL=bossBullet.js.map

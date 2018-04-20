@@ -15,9 +15,9 @@ var objects;
         // public properties
         // Constructor
         function boss(assetManager) {
-            var _this = _super.call(this, assetManager.getResult("boss")) || this;
+            var _this = _super.call(this, "boss") || this;
             _this.Start();
-            _this.x = 0;
+            _this.x = _this.halfWidth;
             _this.y = 2;
             return _this;
         }
@@ -36,7 +36,7 @@ var objects;
         };
         // move the object to some new location
         boss.prototype.Move = function () {
-            this.y += 2;
+            this.y += 1;
         };
         // check to see if some boundary has been passed
         boss.prototype.CheckBounds = function () {
@@ -46,7 +46,7 @@ var objects;
             }
         };
         return boss;
-    }(createjs.Bitmap));
+    }(objects.GameObject));
     objects.boss = boss;
 })(objects || (objects = {}));
 //# sourceMappingURL=boss.js.map

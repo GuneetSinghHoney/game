@@ -9,7 +9,7 @@ module objects {
       
       // Constructor
       constructor(assetManager: createjs.LoadQueue,hero:objects.hero) {
-        super("zom2");
+        super("zom1");
         this.hero = hero;
         this.regX = this.getBounds().width * 0.5;
         this.regY=  this.getBounds().height*0.5;

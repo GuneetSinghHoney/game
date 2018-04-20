@@ -23,5 +23,6 @@
 /// <reference path="../../Scripts/scenes/level1.ts"/>
 /// <reference path="../../Scripts/scenes/level2.ts"/>
 /// <reference path="../../Scripts/scenes/start.ts"/>
+/// <reference path="../../Scripts/scenes/win.ts"/>
 
 /// <reference path="../../Scripts/scenes/congo.ts"/>

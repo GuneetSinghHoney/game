@@ -2,12 +2,14 @@ module objects {
     export class zombie extends objects.GameObject {
       // private instance variables
       private hero;
-      
+      private starting:boolean;
       // public properties
       public iskilled:boolean = false;
       // Constructor
       constructor(assetManager: createjs.LoadQueue,hero:objects.hero) {
-        super("zom1");
+        super("zom");
+        this.starting = true;
+        this.y= -50;
         this.hero = hero;
         this.regX =0;
         this.regY=0;
@@ -34,7 +36,9 @@ module objects {
       // reset the objects location to some value
       public Reset():void {
         this.x = Math.floor((Math.random() * (640 - this.width)) + this.halfWidth);
+       
         this.y = -this.height;
+       
       }
   
       // move the object to some new location

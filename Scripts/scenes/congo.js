@@ -17,6 +17,7 @@ var scenes;
         function congo(assetManager) {
             var _this = _super.call(this, assetManager) || this;
             _this._animator = 0;
+            createjs.Sound.play("fansi");
             _this.Start();
             _this._startSound = assetManager.getResult("startSound");
             return _this;
@@ -24,19 +25,28 @@ var scenes;
         // Private Mathods
         congo.prototype._startButtonClick = function () {
             createjs.Sound.play("startSound");
-            objects.Game.currentScene = config.Scene.LEVEL2;
+            if (objects.Game.scene == config.Scene.PLAY) {
+                objects.Game.currentScene = config.Scene.LEVEL2;
+            }
+            else {
+                objects.Game.currentScene = config.Scene.last;
+            }
         };
         // Public Methods
         // Initialize Game Variables and objects
         congo.prototype.Start = function () {
             this.hero = new createjs.Bitmap(this.assetManager.getResult("boomer"));
-            this._startButton = new objects.Button(this.assetManager, "nextButton", 300, 350);
+            this._startButton = new objects.Button(this.assetManager, "nextButton", 200, 350);
             this._bg = new createjs.Bitmap(this.assetManager.getResult("congo"));
             this._bg.setBounds(0, 0, 500, 400);
             this.hero.setBounds(0, 15, 40, 40);
             this.Main();
         };
         congo.prototype.Update = function () {
+            this._startButton.x += 2;
+            if (this._startButton.x >= 640) {
+                this._startButton.x = 10;
+            }
             this.hero.x = this.hero.x + 2;
             this._animator += 1;
             if (this._animator % 50 == 0) {

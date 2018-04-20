@@ -19,21 +19,23 @@ var scenes;
         // Constructor
         function last(assetManager) {
             var _this = _super.call(this, assetManager) || this;
+            _this._health = 100;
             _this.assetManager = assetManager;
+            _this._overLabel = new objects.Label("HEALTH 100", "30px", "Consolas", "#FF0000", 500, 20, true);
             _this._hero = new objects.hero(_this.assetManager, objects.Game.keyboardmanager);
-            _this._bg = new createjs.Bitmap(_this.assetManager.getResult("lvl1"));
+            _this._bg = new createjs.Bitmap(_this.assetManager.getResult("lvl3"));
             _this.addEventListener("click", _this._fireBullets);
             _this._boss = new objects.boss(_this.assetManager);
             _this._bullet = new objects.bullet(_this.assetManager, _this._hero);
             _this._bullet.distance = 0;
-            _this._bullets = new Array(8);
+            _this._bullets = new Array(6);
             for (var i = 0; i < _this._bullets.length; i++) {
-                _this._bullets[i] = new objects.bossBullet(_this.assetManager);
+                _this._bullets[i] = new objects.bossBullet(_this.assetManager, _this._boss);
             }
             //      this._bullet1 = new objects.bullet(this.assetManager,this._hero);
             //      this._bullet1.distance = 20;
             //      this._zomBullet = new objects.zombullet(this.assetManager,this._boss);
-            _this._bossBullet = new objects.bossBullet(_this.assetManager);
+            //  this._bossBullet = new objects.bossBullet(this.assetManager,this._boss);
             _this.Start();
             return _this;
         }
@@ -52,11 +54,27 @@ var scenes;
         };
         last.prototype.Update = function () {
             //Collisions
+            //bossbullt to hero
             var _this = this;
+            //hero to boss
+            var check1 = managers.Collision.Check(this._bullet, this._boss);
+            if (check1) {
+                if (last._isColliding == false) {
+                    last._isColliding = true;
+                    this._health -= 25;
+                    this._overLabel.text = "HEALTH " + this._health + "";
+                    this._bullet.Reset();
+                    console.log(this._health);
+                }
+            }
+            //jado bullet rest hoyegi is colliding false;
+            if (this._health <= 0) {
+                objects.Game.currentScene = config.Scene.WIN;
+            }
             this._bullets.forEach(function (element) {
                 var check = managers.Collision.Check(_this._hero, element);
                 if (check) {
-                    console.log("Dead !");
+                    objects.Game.currentScene = config.Scene.OVER;
                 }
             });
             //collisions end
@@ -69,7 +87,7 @@ var scenes;
             //   this._bullet1.Update();
             this._boss.Update();
             //   this._zomBullet.Update();
-            this._bossBullet.Update();
+            // this._bossBullet.Update();
         };
         // This is where the fun happens
         last.prototype.Main = function () {
@@ -81,10 +99,13 @@ var scenes;
             this._bullets.forEach(function (element) {
                 _this.addChild(element);
             });
-            this.addChild(this._bossBullet);
+            //  this.addChild(this._bossBullet);
             this.addChild(this._boss);
             this.addChild(this._hero);
+            this.addChild(this._overLabel);
         };
+        //    private _bossBullet: objects.bossBullet;
+        last._isColliding = false;
         return last;
     }(objects.Scene));
     scenes.last = last;

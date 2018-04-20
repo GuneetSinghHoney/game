@@ -8,12 +8,14 @@ module scenes {
        // private _bullet1:objects.bullet;
         private _zombieCounter:number;
         private _count:number;
+       
         // Public Properties
   
       // Constructor
       constructor(assetManager: createjs.LoadQueue) {
         super(assetManager);
         this._count = 5;
+       
         this._zombieCounter =0;
         this.assetManager = assetManager;
         this._hero = new objects.hero(this.assetManager,objects.Game.keyboardmanager);
@@ -62,6 +64,7 @@ module scenes {
         console.log(this._zombieCounter);
         if(this._zombieCounter==this._zombiearray.length)
         {
+          objects.Game.scene = config.Scene.PLAY;
           objects.Game.currentScene = config.Scene.CONGO;
         }
        this._hero.Update();

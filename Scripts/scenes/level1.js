@@ -51,6 +51,7 @@ var scenes;
             var _this = this;
             console.log(this._zombieCounter);
             if (this._zombieCounter == this._zombiearray.length) {
+                objects.Game.scene = config.Scene.PLAY;
                 objects.Game.currentScene = config.Scene.CONGO;
             }
             this._hero.Update();
